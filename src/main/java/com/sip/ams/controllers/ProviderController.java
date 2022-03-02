@@ -21,6 +21,8 @@ import com.sip.ams.repositories.*;
 @RequestMapping("/provider")
 public class ProviderController {
 
+	public static String uploadDirectoryProvider = System.getProperty("user.dir")+"/src/main/resources/static/uploads2";
+
 	private final ProviderRepository providerRepository;
 
 	@Autowired // C'est une annotation pour faire l'injection de dépendance provider.Repository

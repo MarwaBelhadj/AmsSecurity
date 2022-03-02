@@ -24,7 +24,7 @@
 				<div th:switch="${users}" class="container my-5">
 					
 					<div class="col-md-10">
-						<h2 th:case="null">No Role yet!</h2>
+						<h2 th:case="null">No User yet!</h2>
 						<div th:case="*">
 						
 						<h2>Nombre total des Users= <span th:text="${nbr}">10</span></h2>
@@ -46,7 +46,12 @@
 										<td th:text="${user.id}"></td>
 										<td th:text="${user.name}"></td>
 										<td th:text="${user.email}"></td>
-										<td th:text="${user.roles[0].role}"></td>
+										<td>
+										  <ul>
+										   <li th:each="r : ${user.roles}" th:text="${r.role}"></li>
+										  </ul>
+										</td>
+
 										<td>
 										<form method="post" th:action="@{/accounts/updateRole}">
 											<select name="newrole" class="form-control">
@@ -61,9 +66,9 @@
 										</td>
 										<td th:text="${user.active}"></td>
 										
-										<td><a th:href="@{/accounts/enable/{id} (id=${user.id})}">Activer</a></td>
-										<td><a th:href="@{/accounts/disable/{id} (id=${user.id})}">Désactiver</a></td>
-									    
+										<td><a th:href="@{/accounts/enable/{id}/{email} (id=${user.id}, email=${user.email})}">Activer</a></td>
+										<td><a th:href="@{/accounts/disable/{id}/{email} (id=${user.id}, email=${user.email})}">Désactiver</a></td>
+
 									</tr>
 								</tbody>
 							</table>
